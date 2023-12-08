@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "989018753988",
+    "project_id": "land-of-genesis",
+    "storage_bucket": "land-of-genesis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989018753988:android:b487cca8c82fca8142f291",
+        "android_client_info": {
+          "package_name": "com.piratenahid.lognovel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB02g1PcZmZzdorRRAYXkM6uhNttfxlA40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
