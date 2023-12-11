@@ -1,0 +1,4 @@
+{
+    "avdmanager.executable": "/home/mahin/Android/Sdk/cmdline-tools/bin/avdmanager",
+    "avdmanager.sdkManager": "/home/mahin/Android/Sdk/cmdline-tools/bin/sdkmanager"
+}
