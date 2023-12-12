@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 for (int i= 1; i <= titleList.size(); i++ ){
                     map = new HashMap<>();
-                    map.put("title",book.getTitle());
+                    map.put("title",titleList.get(i-1));
                     map.put("subtitle","Chapter "+i);
                     arrayList.add(map);
                 }
