@@ -1,8 +1,10 @@
 package com.piratenahid.lognovel;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,17 +23,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import adapters.Book;
 
 public class MainActivity extends AppCompatActivity {
     ListView listView;
     ArrayAdapter<String> stringArrayAdapter;
+    SimpleAdapter simpleAdapter;
     DatabaseReference reference;
     Book book;
     FirebaseDatabase database;
     List<String> titleList, contentList;
+    HashMap<String, String> map;
+    ArrayList<HashMap<String, String>> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +53,16 @@ public class MainActivity extends AppCompatActivity {
                     assert book != null;
                     titleList.add(book.getTitle());
                     contentList.add(book.getContent());
-                    Log.d(book.getContent(), "onDataChange: "+ book.getTitle());
                 }
-                listView.setAdapter(stringArrayAdapter);
+                for (int i= 1; i <= titleList.size(); i++ ){
+                    map = new HashMap<>();
+                    map.put("title",book.getTitle());
+                    map.put("subtitle","Chapter "+i);
+                    arrayList.add(map);
+                }
+
+                listView.setAdapter(simpleAdapter);
+
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -79,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
         book = new Book();
         titleList = new ArrayList<>();
         contentList = new ArrayList<>();
+        arrayList = new ArrayList<>();
         stringArrayAdapter = new ArrayAdapter<>(this, R.layout.items, R.id.item_title, titleList);
+        simpleAdapter = new SimpleAdapter((Context) this, arrayList,R.layout.items,new String[]{"title","subtitle"},new int[]{R.id.item_title,R.id.item_sub_title});
     }
 
     public static class DatabaseUtil {
